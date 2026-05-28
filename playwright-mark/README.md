@@ -1,0 +1,89 @@
+# 🎭 Automação de Testes E2E — Mark App
+
+![Tests](https://github.com/thomazvictorr/playwright-mark/actions/workflows/ci.yml/badge.svg)
+
+Projeto de automação de testes end-to-end para a aplicação **Mark** (gerenciador de tarefas), desenvolvido com **Playwright** + **TypeScript** e integrado ao **GitHub Actions**.
+
+> A aplicação-alvo é baseada no curso do [Fernando Papito](https://github.com/papito). Este repositório contém apenas os testes de automação.
+
+---
+
+## 🧪 Cobertura de Testes
+
+| Módulo | Cenários |
+|--------|----------|
+| Cadastro | Nova tarefa, tarefa duplicada, campo obrigatório, contagem após cadastro, caracteres especiais |
+| Atualização | Concluir tarefa, reabrir tarefa concluída |
+| Exclusão | Excluir tarefa, contagem após exclusão |
+
+**Total: 9 casos de teste** com Page Object Model e massa de dados via JSON
+
+---
+
+## 🏗️ Estrutura do Projeto
+
+```
+├── tests/
+│   ├── fixtures/
+│   │   ├── task.model.ts        # Interface TypeScript
+│   │   └── tasks.json           # Massa de dados
+│   ├── support/
+│   │   ├── helpers.ts           # Funções auxiliares de API
+│   │   └── pages/tasks/
+│   │       └── index.ts         # Page Object - TasksPage
+│   └── tasks.spec.ts            # Casos de teste
+├── .github/
+│   └── workflows/
+│       └── ci.yml               # Pipeline GitHub Actions
+├── playwright.config.ts
+└── package.json
+```
+
+---
+
+## 🚀 Como executar localmente
+
+**Pré-requisitos:** Node.js 18+, aplicação Mark rodando localmente
+
+```bash
+# Instalar dependências
+npm install
+
+# Instalar browsers
+npx playwright install chromium
+
+# Criar arquivo de variáveis de ambiente
+echo "BASE_URL=http://localhost:8080" > .env
+echo "BASE_API=http://localhost:3333" >> .env
+
+# Executar testes
+npm test
+
+# Ver relatório
+npm run test:report
+```
+
+---
+
+## ⚙️ CI/CD com GitHub Actions
+
+Os testes são executados automaticamente a cada **push** ou **pull request** na branch `main`. O pipeline sobe a API e o front-end antes de rodar os testes.
+
+O relatório é publicado automaticamente via **GitHub Pages** após cada execução.
+
+📄 **[Ver último relatório](https://thomazvictorr.github.io/playwright-mark/report/index.html)**
+
+---
+
+## 🛠️ Tecnologias
+
+- [Playwright](https://playwright.dev/) — framework de automação E2E
+- [TypeScript](https://www.typescriptlang.org/) — tipagem estática
+- [GitHub Actions](https://github.com/features/actions) — CI/CD
+- Padrão **Page Object Model** para organização dos testes
+
+---
+
+## 👨‍💻 Autor
+
+**Thomáz Victor** — [LinkedIn](https://www.linkedin.com/in/thomazvictorr/) | [GitHub](https://github.com/thomazvictorr)

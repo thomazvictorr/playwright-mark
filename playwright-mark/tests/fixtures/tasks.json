@@ -1,0 +1,30 @@
+{
+    "sucess": {
+        "name": "Ler um Livro de TypeScript",
+        "is_done": false
+    },
+    "duplicate": {
+        "name": "Comprar Ketchup",
+        "is_done": false
+    },
+    "required": {
+        "name": "",
+        "is_done": false
+    },
+    "update": {
+        "name": "Pagar a fatura do cartão de crédito",
+        "is_done": false
+    },
+    "delete": {
+        "name": "Estudar Ruby",
+        "is_done": false
+    },
+    "longName": {
+        "name": "Tarefa com nome muito longo para testar o limite de caracteres permitidos no campo de cadastro",
+        "is_done": false
+    },
+    "specialChars": {
+        "name": "Tarefa com caracteres especiais !@#$%",
+        "is_done": false
+    }
+}
