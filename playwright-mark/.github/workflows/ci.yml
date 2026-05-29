@@ -28,34 +28,34 @@ jobs:
 
       - name: Instalar dependências da API
         working-directory: apps/api
-        run: npm install
+        run: yarn install
 
       - name: Inicializar banco de dados
         working-directory: apps/api
-        run: npm run db:init
+        run: npx typeorm migration:run
         env:
-          DB_PATH: ./tasks.db
+          NODE_ENV: development
 
       - name: Iniciar API em background
         working-directory: apps/api
-        run: npm start &
+        run: node src/server.js &
         env:
+          NODE_ENV: development
           PORT: 3333
-          DB_PATH: ./tasks.db
 
       - name: Instalar dependências do Web
         working-directory: apps/web
-        run: npm install
+        run: yarn install
 
       - name: Iniciar Web em background
         working-directory: apps/web
-        run: npm start &
+        run: npx http-server --port 8080 &
 
       - name: Aguardar serviços subirem
         run: npx wait-on http://localhost:3333/tasks http://localhost:8080 --timeout 30000
 
       - name: Instalar dependências dos testes
-        run: npm install
+        run: yarn install
 
       - name: Instalar browsers do Playwright
         run: npx playwright install chromium --with-deps
