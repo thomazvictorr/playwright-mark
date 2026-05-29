@@ -1,6 +1,6 @@
 # 🎭 Automação de Testes E2E — Mark App
 
-![Tests](https://github.com/thomazvictorr/playwright-mark/actions/workflows/ci-mark.yml/badge.svg)
+![Tests](https://github.com/thomazvictorr/playwright-mark/actions/workflows/ci.yml/badge.svg)
 
 Projeto de automação de testes end-to-end para a aplicação **Mark** (gerenciador de tarefas), desenvolvido com **Playwright** + **TypeScript** e integrado ao **GitHub Actions**.
 
