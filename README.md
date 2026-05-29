@@ -1,10 +1,10 @@
 # 🎭 Automação de Testes E2E — Mark App
 
-![Tests](https://github.com/thomazvictorr/playwright-mark/actions/workflows/ci.yml/badge.svg)
+![Tests](https://github.com/thomazvictorr/playwright-mark/actions/workflows/ci-mark.yml/badge.svg)
 
 Projeto de automação de testes end-to-end para a aplicação **Mark** (gerenciador de tarefas), desenvolvido com **Playwright** + **TypeScript** e integrado ao **GitHub Actions**.
 
-> A aplicação-alvo é baseada no curso do [Fernando Papito](https://github.com/papito). Este repositório contém apenas os testes de automação.
+> A aplicação-alvo é baseada no curso do [Fernando Papito](https://github.com/papito). Este repositório contém os testes de automação e a aplicação necessária para executá-los.
 
 ---
 
@@ -23,6 +23,9 @@ Projeto de automação de testes end-to-end para a aplicação **Mark** (gerenci
 ## 🏗️ Estrutura do Projeto
 
 ```
+├── apps/
+│   ├── api/                     # API da aplicação (Node.js + SQLite)
+│   └── web/                     # Front-end da aplicação
 ├── tests/
 │   ├── fixtures/
 │   │   ├── task.model.ts        # Interface TypeScript
@@ -43,16 +46,28 @@ Projeto de automação de testes end-to-end para a aplicação **Mark** (gerenci
 
 ## 🚀 Como executar localmente
 
-**Pré-requisitos:** Node.js 18+, aplicação Mark rodando localmente
+**Pré-requisitos:** Node.js 18+
 
 ```bash
-# Instalar dependências
+# Instalar dependências dos testes
 npm install
 
 # Instalar browsers
 npx playwright install chromium
 
-# Criar arquivo de variáveis de ambiente
+# Instalar dependências da API
+cd apps/api && yarn install
+
+# Inicializar banco de dados
+./node_modules/typeorm/cli.js migration:run
+
+# Iniciar API (porta 3333)
+node src/server.js
+
+# Instalar dependências do Web e iniciar (porta 8080)
+cd ../web && yarn install && npx http-server --port 8080
+
+# Criar arquivo de variáveis de ambiente na raiz
 echo "BASE_URL=http://localhost:8080" > .env
 echo "BASE_API=http://localhost:3333" >> .env
 
@@ -67,7 +82,7 @@ npm run test:report
 
 ## ⚙️ CI/CD com GitHub Actions
 
-Os testes são executados automaticamente a cada **push** ou **pull request** na branch `main`. O pipeline sobe a API e o front-end antes de rodar os testes.
+Os testes são executados automaticamente a cada **push**, **pull request** e todo **dia útil às 8h**. O pipeline sobe a API e o front-end antes de rodar os testes.
 
 O relatório é publicado automaticamente via **GitHub Pages** após cada execução.
 
