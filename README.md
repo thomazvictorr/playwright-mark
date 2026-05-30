@@ -4,7 +4,7 @@
 
 Projeto de automação de testes end-to-end para a aplicação **Mark** (gerenciador de tarefas), desenvolvido com **Playwright** + **TypeScript** e integrado ao **GitHub Actions**.
 
-> A aplicação-alvo é baseada no curso do [Fernando Papito](https://github.com/papito). Este repositório contém os testes de automação e a aplicação necessária para executá-los.
+> A aplicação-alvo é baseada no curso do Fernando Papito. Este repositório contém os testes de automação e a aplicação necessária para executá-los.
 
 ---
 
